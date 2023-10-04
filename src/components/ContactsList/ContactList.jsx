@@ -1,4 +1,4 @@
-import { getContacts } from '../../Redux/ContactsSlice';
+import { getContacts } from '../../Redux/Contactsslice';
 import { getFilter } from '../../Redux/Filterslice';
 import { List, ListItem, Text, ButtonDelete } from './ContactList.styled';
 import { useDispatch, useSelector } from 'react-redux';
