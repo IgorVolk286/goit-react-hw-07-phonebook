@@ -1,6 +1,6 @@
 // import { useEffect } from 'react';
 // import { useSelector } from 'react-redux';
-import { getIsLoading, getError } from '../Redux/ContactsSlice';
+import { getIsLoading, getError } from '../Redux/Contactsslice';
 // import { Form } from './form/form';
 
 import { FilterCon } from './FilterContacts/FilterContacts';

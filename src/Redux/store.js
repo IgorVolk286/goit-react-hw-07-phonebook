@@ -2,7 +2,7 @@
 // import { devToolsEnhancer } from '@redux-devtools/extension';
 import { configureStore } from '@reduxjs/toolkit';
 // import { contactReduser, filterReduser } from './Redusers';
-import { contactReducer } from '../Redux/ContactsSlice';
+import { contactReducer } from '../Redux/Contactsslice';
 import { filterSlice } from './Filterslice';
 // import { persistStore, persistReducer } from 'redux-persist';
 // import storage from 'redux-persist/lib/storage';
