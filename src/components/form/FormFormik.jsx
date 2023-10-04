@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 import { addContact } from '../../Redux/Operations';
 import { useDispatch, useSelector } from 'react-redux';
 // import { addContact } from '../../Redux/ContactsSlice';
-import { getContacts } from '../../Redux/Contactsslice';
+import { getContacts } from '../../Redux/ContactsSlice';
 import {
   TitleInput,
   AddButton,
