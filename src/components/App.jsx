@@ -1,8 +1,8 @@
 // import { useEffect } from 'react';
 // import { useSelector } from 'react-redux';
-// import { getContacts } from 'Redux/selectors';
+import { getIsLoading, getError } from '../Redux/ContactsSlice';
 // import { Form } from './form/form';
-// import { nanoid } from 'nanoid';
+
 import { FilterCon } from './FilterContacts/FilterContacts';
 import { ContactList } from './ContactsList/ContactList';
 import { Layout } from './Layout';
@@ -11,18 +11,36 @@ import { GlobalStyle } from './GlobalStyled';
 import { FormFormik } from './form/FormFormik';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetcher } from '../Redux/Operations';
 
 export const App = () => {
+  const dispatch = useDispatch();
+  // const contacts = useSelector(getContacts);
+  const error = useSelector(getError);
+  const isLoading = useSelector(getIsLoading);
+
+  useEffect(() => {
+    dispatch(fetcher());
+  }, [dispatch]);
+
   return (
-    <Layout>
-      <Title>PHONEBOOK</Title>
-      <FormFormik />
-      <TitleBook>CONTACTS</TitleBook>
-      <FilterCon />
-      <ContactList />
-      <GlobalStyle />
-      <ToastContainer position="top-center" autoClose={3000} theme="dark" />
-    </Layout>
+    <>
+      <div>
+        {isLoading && <span>Loading contacts....</span>}
+        {error && <span>{error.message}</span>}
+      </div>
+      <Layout>
+        <Title>PHONEBOOK</Title>
+        <FormFormik />
+        <TitleBook>CONTACTS</TitleBook>
+        <FilterCon />
+        <ContactList />
+        <GlobalStyle />
+        <ToastContainer position="top-center" autoClose={3000} theme="dark" />
+      </Layout>
+    </>
   );
 };
 

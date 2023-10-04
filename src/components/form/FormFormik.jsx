@@ -2,9 +2,10 @@ import React from 'react';
 import { nanoid } from 'nanoid';
 import { Formik } from 'formik';
 import { toast } from 'react-toastify';
+import { addContact } from '../../Redux/Operations';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from '../../Redux/Contactsslice';
-import { getContacts } from '../../Redux/Contactsslice';
+// import { addContact } from '../../Redux/ContactsSlice';
+import { getContacts } from '../../Redux/ContactsSlice';
 import {
   TitleInput,
   AddButton,
@@ -43,10 +44,9 @@ export const FormFormik = () => {
       initialValues={{ name: '', number: '' }}
       validationSchema={FormikSchema}
       onSubmit={(values, actions) => {
-        if (contacts.list.some(cont => cont.name === values.name)) {
+        if (contacts.some(cont => cont.name === values.name)) {
           return toast.warn(`${values.name} is already in contacts`);
         }
-
         dispatch(addContact(values));
         actions.resetForm();
       }}

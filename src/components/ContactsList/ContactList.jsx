@@ -1,16 +1,17 @@
-import { getContacts } from '../../Redux/Contactsslice';
+import { getContacts } from '../../Redux/ContactsSlice';
 import { getFilter } from '../../Redux/Filterslice';
 import { List, ListItem, Text, ButtonDelete } from './ContactList.styled';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteCont } from '../../Redux/Contactsslice';
+// import { deleteCont } from '../../Redux/Contactsslice';
+import { deleteContact } from '../../Redux/Operations';
 
 export const ContactList = () => {
   const filter = useSelector(getFilter);
-  const contacts = useSelector(getContacts);
   const dispatch = useDispatch();
+  const contacts = useSelector(getContacts);
 
-  console.log(contacts);
-  const visibleContact = contacts.list.filter(contact =>
+  // console.log(contacts);
+  const visibleContact = contacts.filter(contact =>
     contact.name.toLowerCase().includes(filter.toLowerCase())
   );
 
@@ -22,7 +23,7 @@ export const ContactList = () => {
             <Text>
               {name} : {number}
             </Text>
-            <ButtonDelete onClick={() => dispatch(deleteCont(id))}>
+            <ButtonDelete onClick={() => dispatch(deleteContact(id))}>
               DELETE
             </ButtonDelete>
           </ListItem>
