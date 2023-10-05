@@ -47,9 +47,3 @@ export const App = () => {
     </>
   );
 };
-
-// const contacts = useSelector(getContacts);
-
-// useEffect(() => {
-//   localStorage.setItem('contactList', JSON.stringify(contacts));
-// }, [contacts]);
