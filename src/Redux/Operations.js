@@ -30,7 +30,7 @@ export const addContact = createAsyncThunk(
 // удаление контакта
 
 export const deleteContact = createAsyncThunk(
-  'contacts/addContact',
+  'contacts/deleteContact',
   async id => {
     try {
       const response = await axios.delete(`/contact/${id}`);
