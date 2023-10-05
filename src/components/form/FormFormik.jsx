@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 import { addContact } from '../../Redux/Operations';
 import { useDispatch, useSelector } from 'react-redux';
 // import { addContact } from '../../Redux/ContactsSlice';
-import { getContacts } from '../../Redux/Contactsslice';
+import { selectContacts } from '../../Redux/Contactsslice';
 import {
   TitleInput,
   AddButton,
@@ -38,7 +38,7 @@ let FormikSchema = Yup.object().shape({
 
 export const FormFormik = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector(getContacts);
+  const contacts = useSelector(selectContacts);
   return (
     <Formik
       initialValues={{ name: '', number: '' }}

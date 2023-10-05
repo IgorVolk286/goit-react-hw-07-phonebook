@@ -1,19 +1,18 @@
-import { getContacts } from '../../Redux/Contactsslice';
-import { getFilter } from '../../Redux/Filterslice';
+import { selectVisibleContacts } from '../../Redux/Contactsslice';
+// import { selectFilter } from '../../Redux/Filterslice';
 import { List, ListItem, Text, ButtonDelete } from './ContactList.styled';
 import { useDispatch, useSelector } from 'react-redux';
 // import { deleteCont } from '../../Redux/Contactsslice';
 import { deleteContact } from '../../Redux/Operations';
 
 export const ContactList = () => {
-  const filter = useSelector(getFilter);
   const dispatch = useDispatch();
-  const contacts = useSelector(getContacts);
+  const visibleContact = useSelector(selectVisibleContacts);
 
   // console.log(contacts);
-  const visibleContact = contacts.filter(contact =>
-    contact.name.toLowerCase().includes(filter.toLowerCase())
-  );
+  // const visibleContact = contacts.filter(contact =>
+  //   contact.name.toLowerCase().includes(filter.toLowerCase())
+  // );
 
   return (
     <List>

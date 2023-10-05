@@ -1,6 +1,6 @@
 // import { useEffect } from 'react';
 // import { useSelector } from 'react-redux';
-import { getIsLoading, getError } from '../Redux/Contactsslice';
+import { selectIsLoading, selectError } from '../Redux/Contactsslice';
 // import { Form } from './form/form';
 
 import { FilterCon } from './FilterContacts/FilterContacts';
@@ -14,12 +14,12 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetcher } from '../Redux/Operations';
-
+import { selectContacts } from '../Redux/Contactsslice';
 export const App = () => {
   const dispatch = useDispatch();
-  // const contacts = useSelector(getContacts);
-  const error = useSelector(getError);
-  const isLoading = useSelector(getIsLoading);
+  const contacts = useSelector(selectContacts);
+  const error = useSelector(selectError);
+  const isLoading = useSelector(selectIsLoading);
 
   useEffect(() => {
     dispatch(fetcher());
@@ -28,7 +28,7 @@ export const App = () => {
   return (
     <>
       <div>
-        {isLoading && <span>Loading contacts....</span>}
+        {isLoading && <p>Loading contacts....</p>}
         {error && <span>{error.message}</span>}
       </div>
       <Layout>
@@ -36,9 +36,13 @@ export const App = () => {
         <FormFormik />
         <TitleBook>CONTACTS</TitleBook>
         <FilterCon />
-        <ContactList />
+        {contacts.length > 0 ? (
+          <ContactList />
+        ) : (
+          <p>Wait for your contacts....</p>
+        )}
         <GlobalStyle />
-        <ToastContainer position="top-center" autoClose={3000} theme="dark" />
+        <ToastContainer position="top-center" autoClose={1000} theme="dark" />
       </Layout>
     </>
   );
