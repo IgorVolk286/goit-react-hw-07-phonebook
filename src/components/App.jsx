@@ -29,18 +29,14 @@ export const App = () => {
     <>
       <div>
         {isLoading && <p>Loading contacts....</p>}
-        {error && <span>{error.message}</span>}
+        {error && <span>{error}</span>}
       </div>
       <Layout>
         <Title>PHONEBOOK</Title>
         <FormFormik />
         <TitleBook>CONTACTS</TitleBook>
         <FilterCon />
-        {contacts.length > 0 ? (
-          <ContactList />
-        ) : (
-          <p>Wait for your contacts....</p>
-        )}
+        {contacts.length > 0 ? <ContactList /> : <p>Something wrong....</p>}
         <GlobalStyle />
         <ToastContainer position="top-center" autoClose={1000} theme="dark" />
       </Layout>

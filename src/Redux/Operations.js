@@ -8,10 +8,17 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 axios.defaults.baseURL = 'https://651d8b1c44e393af2d59fa66.mockapi.io';
 
-export const fetcher = createAsyncThunk('contacts/fetchAll', async () => {
-  const response = await axios.get('/contact');
-  return response.data;
-});
+export const fetcher = createAsyncThunk(
+  'contacts/contactsAll',
+  async (_, thunkAPI) => {
+    try {
+      const response = await axios.get('/contact');
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
 
 // добавленкие контакта///
 
